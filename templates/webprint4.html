@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+        <title>小票打印</title>
+        <style type="text/css">
+            *{padding:0;margin: 0;}
+
+            @page {
+                     size: 58mm 70mm;
+                }
+
+            h1{font-size: 20px;}
+            h3{font-size: 16px;}
+            .left{
+                float: left;
+            }
+            .right{
+                float:right;
+            }
+            .clearfix{
+                clear: both;
+            }
+            ul{list-style: none;}
+            .print_container{
+                padding: 20px;
+                width: 188px;
+            }
+            .section1{
+            }
+            .section2 label{
+                display: block;
+            }
+            .section3 label{
+                display: block;
+            }
+            .section4{
+            }
+            .section4 .total label{
+                display: block;
+            }
+            .section4 .other_fee{
+                border-bottom: 1px solid #DADADA;
+            }
+            .section5 label{
+                display: block;
+            }
+            </style>
+    </head>
+    <body style="background-color:#fff;">
+        <div class="print_container">
+            <h1>上课信息</h1>
+            <span>**************************</span>
+            <h3>学员信息</h3>
+            <div class="section1">
+                  <div class="haha clearfloat font8">
+                    <span >学员姓名:</span>
+                    <span >{{obj.product_order_id.user_id.name}}</span>
+                </div>
+                <div class="haha clearfloat font8">
+                    <span >学员手机号:</span>
+                    <span >{{obj.product_order_id.user_id.telephone}}</span>
+                </div>
+            </div>
+
+            <span>**************************</span>
+            <h3>老师信息</h3>
+            <div class="section2">
+                <div class="haha clearfloat font8">
+                    <span >老师姓名:</span>
+                    <span >{{obj.teacher_id.name}}</span>
+                </div>
+                <div class="haha clearfloat font8">
+                    <span >老师手机号:</span>
+                    <span >{{obj.teacher_id.telephone}}</span>
+                </div>
+            </div>
+
+            <span>**************************</span>
+            <div class="section3">
+                        <div class="haha clearfloat font8">
+                            <span >课程:</span>
+                            <span >{{obj.product_order_id.product_id.name}}</span>
+                        </div>
+                        <div class=" clearfloat font8">
+                            <span >上课开始时间:</span>
+                            <span >{{obj.start_date}}</span>
+                        </div>
+                        <div class="haha clearfloat font8">
+                            <span >上课结束时间:</span>
+                            <span >{{obj.end_date}}</span>
+                        </div>
+            </div>
+            <span>**************************</span>
+
+        </div>
+    </body>
+</html>

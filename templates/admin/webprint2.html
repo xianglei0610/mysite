@@ -1,0 +1,121 @@
+<!-- 58小票打印样式 -->
+<script id="print58-tpl" type="text/html">
+    <!DOCTYPE html> <html> <head> <meta charset="utf-8" />
+        <style type="text/css">
+         margin: 0px;
+			body {
+				margin: 0;
+				padding: 0;
+				width: 100%;
+			}
+			.clearfloat {
+				overflow: hidden;
+			}
+			.left{
+				float:left;
+			}
+			.right{
+				float:right;
+			}
+			.font10 {
+				font-size: 14px;
+			}
+			.fontW {
+				font-weight:bold;
+			}
+			.font8 {
+				font-size: 12px;
+			}
+
+			.margin2{
+				margin: 2px 0;
+			}
+			.margin5{
+				margin: 5px 0 !important;
+			}
+
+			.printer{
+				width: 174px;
+			}
+			.title {
+				text-align: center;
+				width:90%;
+				margin:auto;
+				padding: 5px 0;
+			}
+			.divide {
+				text-align:center;
+				margin:auto;
+			}
+			.detail {
+				margin: 2px 0;
+			}
+			.detail>.left {
+				margin-left: 10px;
+			}
+			.quan>.left {
+				margin-left: 10px;
+			}
+			.bottom{
+				width:100%;
+				height:200px;
+				background:pink;
+				clear:both;/* 位于上方写了float的div，下面这个div必须加这一句 */
+			}
+
+		</style>
+    </head>
+    <body>
+    <div class="printer">
+        <div class="title font10 fontW">
+            <div>{{shopName}}</div>
+            <!--<div style="margin-top:2px;">交易汇总</div>-->
+        </div>
+        <div class="divide">===================</div>
+        <div class="haha clearfloat font8">
+            <span class="left">开始日期:</span>
+            <span class="right">{{startTime}}</span>
+        </div>
+        <div class="haha clearfloat font8">
+            <span class="left">结束日期:</span>
+            <span class="right">{{endTime}}</span>
+        </div>
+        <div class="content">
+            <div class="divide">-----------------------------</div>
+            <div class="head font8 clearfloat fontW">
+                <span class="left">总收款:</span>
+                <span class="right">{{totalAmount | toFixed}}元({{totalCount}}笔)</span>
+            </div>
+            {{each tradeList temp}}
+            <div class="detail font8 clearfloat">
+                <span class="left">{{temp.pay_type_desc}}:</span>
+                {{if depositState == 1 && temp.pay_type != 2}}
+                {{if temp.tradeLogCount > 0}}
+                <span class="right">{{temp.consume_money | toFixed}}元({{temp.tradeLogCount}}笔)</span>
+                {{/if}}
+                {{else}}
+                <span class="right">{{temp.money | toFixed}}元({{temp.tradeLogCount}}笔)</span>
+                {{/if}}
+            </div>
+            {{/each}}
+            {{if depositState == 1}}
+            <div class="detail font8 clearfloat">
+                <span class="left">押金:</span>
+                <span class="right">{{depositMoney | toFixed}}元</span>
+            </div>
+            {{/if}}
+
+            <div class="divide margin5">>>>>>>>>>>>>>>>>>></div>
+            <div class="font8 clearfloat margin2">
+                <span class="left">打印人:</span>
+                <span class="right">{{printer}}</span>
+            </div>
+            <div class="font8 clearfloat margin2">
+                <span class="left">打印时间:</span>
+                <span class="right">{{printTime}}</span>
+            </div>
+        </div>
+        <div>
+    </body>
+    </html>
+</script>
